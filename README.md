@@ -10,8 +10,11 @@ https://juan-kineipe.github.io/asteroids/
 
 ### Controls
 - Rotate
-  - Left, Right / A, D
+  - ← →
+  - A D
 - Thrust
-  - Up / W  
+  - ↑
+  - W
 - Shoot
-  - X / Mouse Click
+  - Space
+  - Mouse Click (Left)
