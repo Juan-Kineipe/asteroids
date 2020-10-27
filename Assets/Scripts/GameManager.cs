@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public float spawnInterval = 1f;
     private float time = 0f;
     private float elapsedTime = 0f;
+    private int minutes;
+    public Text timeText;
 
     // Player actual health
     public float healthPoints = 3f;
@@ -60,13 +62,22 @@ public class GameManager : MonoBehaviour
 
             // Counting elapsed time to increase difficulty over time
             elapsedTime += Time.deltaTime;
+
+            if(elapsedTime >= 60)
+            {
+                minutes += 1;
+                elapsedTime = 0;
+            }
+
+            timeText.text = minutes.ToString() + ":" + ((int)elapsedTime).ToString();
+            
         }
     }
 
     void SpawnAsteroids() {
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
-        // Maximum of 10 asteroids at same time 
-        if (asteroids != null || asteroids.Length < 10)
+        // Maximum asteroids at same time (this value gets increased when difficulty gets higher)
+        if (asteroids.Length < (5 + (minutes * 2)))
         {
             GameObject Asteroid = Instantiate(asteroid) as GameObject;
             Asteroid.transform.position = RandomPosition();
