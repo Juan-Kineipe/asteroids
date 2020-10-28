@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e1a531956e72f448e0a1ee47210a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
-  ThrustForce: 2
+  maxSpeed: 6
+  ThrustForce: 3
   RotateDegreesPerSecond: 200
   laser: {fileID: 1010087750993170337, guid: 51361abd6f97ac94db05845ecaf2a821, type: 3}
   laserForce: 400

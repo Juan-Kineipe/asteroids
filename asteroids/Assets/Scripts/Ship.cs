@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public float maxSpeed = 4f;
-    public float ThrustForce = 2f;
+    public float maxSpeed = 6f;
+    public float ThrustForce = 3f;
     public float RotateDegreesPerSecond = 200f;
     public GameObject laser;
     public float laserForce = 400f;
@@ -79,13 +79,13 @@ public class Ship : MonoBehaviour
         Vector2 position = transform.position;
 
         // check left, right, top, and bottom sides
-        if (position.x + colliderRadius < GameManager.instance.screenLeft ||
-            position.x - colliderRadius > GameManager.instance.screenRight)
+        if (position.x + colliderRadius < ScreenUtils.instance.screenLeft ||
+            position.x - colliderRadius > ScreenUtils.instance.screenRight)
         {
             position.x *= -1;
         }
-        if (position.y - colliderRadius > GameManager.instance.screenTop ||
-            position.y + colliderRadius < GameManager.instance.screenBottom)
+        if (position.y - colliderRadius > ScreenUtils.instance.screenTop ||
+            position.y + colliderRadius < ScreenUtils.instance.screenBottom)
         {
             position.y *= -1;
         }

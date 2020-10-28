@@ -9,11 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject asteroid;
     private GameObject player;
 
-    public float screenBottom;
-    public float screenTop;
-    public float screenLeft;
-    public float screenRight;
-
     public float spawnInterval = 1f;
     private float time = 0f;
     private float elapsedTime = 0f;
@@ -36,13 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
-
         player = GameObject.FindGameObjectWithTag("Player");
-
-        this.screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, -Camera.main.transform.position.z)).y;
-        this.screenTop = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, -Camera.main.transform.position.z)).y;
-        this.screenLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, -Camera.main.transform.position.z)).x;
-        this.screenRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, -Camera.main.transform.position.z)).x;
     }
 
 
@@ -87,10 +76,10 @@ public class GameManager : MonoBehaviour
     Vector2 RandomPosition()
     {
         Vector2[] possiblePositions = {
-            new Vector2(screenBottom, screenLeft),
-            new Vector2(screenTop, screenLeft),
-            new Vector2(screenBottom, screenRight),
-            new Vector2(screenTop, screenRight)
+            new Vector2(ScreenUtils.instance.screenBottom, ScreenUtils.instance.screenLeft),
+            new Vector2(ScreenUtils.instance.screenTop, ScreenUtils.instance.screenLeft),
+            new Vector2(ScreenUtils.instance.screenBottom, ScreenUtils.instance.screenRight),
+            new Vector2(ScreenUtils.instance.screenTop, ScreenUtils.instance.screenRight)
         };
 
         return possiblePositions[Random.Range(0,possiblePositions.Length)];
