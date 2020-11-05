@@ -1,4 +1,4 @@
-# Breakout
+# Asteroids
 Remake version of Asteroids using C# and Unity
 
 ![Screenshot](https://github.com/Juan-Kineipe/asteroids/blob/master/screenshot.png?raw=true)
