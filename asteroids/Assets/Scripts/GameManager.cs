@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public int difficulty = 3;
 
     // Player actual health
-    public float healthPoints = 3f;
+    public float healthPoints = 5f;
 
     // Health image (UI)
     public Image[] healthImages;
@@ -29,12 +29,18 @@ public class GameManager : MonoBehaviour
     // Game over screen
     public GameObject gameOver;
 
+    private AudioSource audio;
+    public AudioClip DifficultyUp;
+    public AudioClip Lose;
+
     public static GameManager instance;
+    
 
     void Start()
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        audio = GetComponent<AudioSource>();
     }
 
 
@@ -60,6 +66,7 @@ public class GameManager : MonoBehaviour
                 difficulty += 2;
                 minutes += 1;
                 elapsedTime = 0;
+                audio.PlayOneShot(DifficultyUp);
             }
 
             timeText.text = minutes.ToString() + ":" + ((int)elapsedTime).ToString();
@@ -118,7 +125,7 @@ public class GameManager : MonoBehaviour
     {
         gameOver.SetActive(true);
         Destroy(player);
-        //audio.PlayOneShot(gameOverAudio);
+        //audio.PlayOneShot(Lose);
     }
 
     public void Restart()

@@ -15,6 +15,10 @@ public class Ship : MonoBehaviour
     private Rigidbody2D rb;
     private float colliderRadius;
 
+    private AudioSource audio;
+    public AudioClip Shoot;
+    public AudioClip Hit;
+
     Vector2 thrustDirection = new Vector2(1, 0);
 
     // Start is called before the first frame update
@@ -22,6 +26,7 @@ public class Ship : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         colliderRadius = GetComponent<CircleCollider2D>().radius;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -56,6 +61,7 @@ public class Ship : MonoBehaviour
             GameObject newLaser = Instantiate(laser, transform.position, transform.rotation);
             newLaser.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.right * laserForce);
             time = cooldown;
+            audio.PlayOneShot(Shoot);
         }
     }
 
@@ -95,6 +101,7 @@ public class Ship : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Asteroid") {
             GameManager.instance.Damage(1f);
+            audio.PlayOneShot(Hit);
         }
     }
 }
