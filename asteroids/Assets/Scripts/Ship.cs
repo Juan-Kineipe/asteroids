@@ -72,13 +72,10 @@ public class Ship : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
-    }
 
-    void OnBecameInvisible()
-    {
         Vector2 position = transform.position;
 
-        // check left, right, top, and bottom sides
+        // Check left, right, top, and bottom sides
         if (position.x + colliderRadius < ScreenUtils.instance.screenLeft ||
             position.x - colliderRadius > ScreenUtils.instance.screenRight)
         {
@@ -90,7 +87,7 @@ public class Ship : MonoBehaviour
             position.y *= -1;
         }
 
-        // move ship to the other side of the screen
+        // Move SHIP to the other side of the screen
         transform.position = position;
     }
 

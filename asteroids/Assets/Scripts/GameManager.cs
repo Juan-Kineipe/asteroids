@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     private int minutes;
     public Text timeText;
 
+    // Maximum asteroids at same time at the begginning
+    public int difficulty = 3;
+
     // Player actual health
     public float healthPoints = 3f;
 
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
 
             if(elapsedTime >= 60)
             {
+                difficulty += 2;
                 minutes += 1;
                 elapsedTime = 0;
             }
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
     void SpawnAsteroids() {
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
         // Maximum asteroids at same time (this value gets increased when difficulty gets higher)
-        if (asteroids.Length < (5 + (minutes * 2)))
+        if (asteroids.Length < difficulty)
         {
             GameObject Asteroid = Instantiate(asteroid) as GameObject;
             Asteroid.transform.position = RandomPosition();
@@ -76,10 +80,10 @@ public class GameManager : MonoBehaviour
     Vector2 RandomPosition()
     {
         Vector2[] possiblePositions = {
-            new Vector2(ScreenUtils.instance.screenBottom, ScreenUtils.instance.screenLeft),
-            new Vector2(ScreenUtils.instance.screenTop, ScreenUtils.instance.screenLeft),
-            new Vector2(ScreenUtils.instance.screenBottom, ScreenUtils.instance.screenRight),
-            new Vector2(ScreenUtils.instance.screenTop, ScreenUtils.instance.screenRight)
+            new Vector2((ScreenUtils.instance.screenBottom)+4, (ScreenUtils.instance.screenLeft)+4),
+            new Vector2((ScreenUtils.instance.screenTop)-4, (ScreenUtils.instance.screenLeft)+4),
+            new Vector2((ScreenUtils.instance.screenBottom)+4, (ScreenUtils.instance.screenRight)-4),
+            new Vector2((ScreenUtils.instance.screenTop)-4, (ScreenUtils.instance.screenRight)-4)
         };
 
         return possiblePositions[Random.Range(0,possiblePositions.Length)];
